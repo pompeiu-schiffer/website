@@ -1479,6 +1479,29 @@ body.tufte-site main details.lean-statement > summary {
   font-family: var(--mono);
   font-variant: normal;
 }
+.lean-statement-open-hint {
+  flex: 1 0 100%;
+  width: fit-content;
+  max-width: 100%;
+  margin: .05rem 0 0;
+  padding: .08rem .2rem;
+  color: var(--muted);
+  border-radius: .12rem;
+  font-family: var(--font-prose);
+  font-size: var(--type-label);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-transform: none;
+  transition: color .12s ease, background-color .12s ease, box-shadow .12s ease;
+}
+details.lean-statement[open] .lean-statement-open-hint { display: none; }
+details.lean-statement.is-lean-alignment-prompted:not([open]) .lean-statement-open-hint {
+  color: var(--orange);
+  background-color: rgba(160, 0, 0, .09);
+  box-shadow: 0 0 0 2px rgba(160, 0, 0, .07);
+}
 body.tufte-site main details.lean-statement[open] > summary { border-bottom: 1px solid var(--line); }
 body.tufte-site main details.lean-statement > .lean-statement-body {
   box-sizing: border-box;

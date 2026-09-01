@@ -731,15 +731,24 @@
       }
 
       const show = ({ pin = false } = {}) => {
-        disclosure.open = true;
+        if (!disclosure.open) {
+          disclosure.classList.add("is-lean-alignment-prompted");
+          return;
+        }
         if (notesTarget) notesTarget.hidden = false;
         highlight(disclosure);
         controller.show(alignment, { pin });
       };
       interactionTarget.addEventListener("pointerenter", () => show());
-      interactionTarget.addEventListener("pointerleave", controller.reset);
+      interactionTarget.addEventListener("pointerleave", () => {
+        disclosure.classList.remove("is-lean-alignment-prompted");
+        controller.reset();
+      });
       interactionTarget.addEventListener("focus", () => show());
-      interactionTarget.addEventListener("blur", controller.reset);
+      interactionTarget.addEventListener("blur", () => {
+        disclosure.classList.remove("is-lean-alignment-prompted");
+        controller.reset();
+      });
       if (!nativeControl) {
         target.addEventListener("click", () => show({ pin: true }));
         target.addEventListener("keydown", (event) => {
@@ -775,7 +784,10 @@
     label.textContent = "Formalized statement";
     const title = document.createElement("code");
     title.textContent = statement.title;
-    heading.append(label, title);
+    const openHint = document.createElement("em");
+    openHint.className = "lean-statement-open-hint";
+    openHint.textContent = "Press show to open the Lean statement snippet.";
+    heading.append(label, title, openHint);
     const action = document.createElement("i");
     action.setAttribute("aria-hidden", "true");
     action.textContent = "show +";
@@ -833,6 +845,7 @@
     if (notesTarget) notesTarget.hidden = !disclosure.open;
 
     disclosure.addEventListener("toggle", () => {
+      disclosure.classList.remove("is-lean-alignment-prompted");
       if (disclosure.open) {
         if (notesTarget) notesTarget.hidden = false;
         highlight(disclosure);
