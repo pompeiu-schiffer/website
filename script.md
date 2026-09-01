@@ -27,17 +27,17 @@ There is no build step for the current site. From the repository root, run:
 ### One-time OBS setup
 
 1. Install OBS Studio from https://obsproject.com/ and approve its screen-recording and microphone permissions. On macOS, restart OBS after granting the permissions.
-2. Open **Settings → Video** and set both **Base (Canvas) Resolution** and **Output (Scaled) Resolution** to $1920\times1080$. Set **Common FPS Values** to $30$.
+2. Open **Settings → Video** and set both **Base (Canvas) Resolution** and **Output (Scaled) Resolution** to $1920\times1080$. Set **Common FPS Values** to $30$. This standardizes the four output files, but the captured display must also be framed at 16:9. Use a 16:9 display when possible. If the display is 16:10 or ultrawide, crop the display capture to a 16:9 region without cutting off the website; do not stretch the image.
 3. Create one scene named “Website recording.”
-4. Add a **Window Capture** source and choose the browser window containing the website. On macOS 13 or later, add **macOS Screen Capture**, set its method to **Window Capture**, and choose the browser. Leave application audio capture off. Fit the source to the canvas so that no desktop, dock, tabs, or bookmarks are visible.
-5. Open **Settings → Audio**. Disable **Desktop Audio** and choose the narration microphone under **Mic/Auxiliary Audio**. Do not add the same microphone again as a separate source.
+4. Add a source that captures the entire recording display: use **Display Capture** on Windows, **macOS Screen Capture → Display Capture** on macOS 13 or later, or the available **Screen Capture/Display Capture** source on Linux. Choose the monitor used for recording, leave the cursor visible, and fit the source to the canvas.
+5. Record narration only. Open **Settings → Audio**, set **Sample Rate** to **48 kHz**, disable **Desktop Audio**, and choose the narration microphone under **Mic/Auxiliary Audio**. If the display-capture source itself appears in the Audio Mixer, mute it. Do not add the same microphone again as a separate source.
 6. In the Audio Mixer, speak at the intended volume and set **Mic/Aux** so ordinary speech peaks between roughly $-12$ and $-6$ dB and never reaches the red.
-7. Open **Settings → Output**, set **Output Mode** to **Simple**, and find the **Recording** group. Choose the folder where takes will be saved, select **High Quality, Medium File Size**, and set **Recording Format** to **MKV**.
+7. Open **Settings → Output**, set **Output Mode** to **Simple**, and find the **Recording** group. Choose the folder where takes will be saved, select **High Quality, Medium File Size**, set **Recording Format** to **Hybrid MP4**, and choose an **H.264** video encoder. Hybrid MP4 records directly to an MP4 file while remaining recoverable if OBS or the computer stops unexpectedly. If Hybrid MP4 is unavailable, update OBS; use MKV and **File → Remux Recordings** only as a fallback.
 
 ### Before recording each part
 
-1. Use a 16:9 browser window at 100% zoom and the same light theme for all four speakers.
-2. Close unrelated tabs and applications, disable notifications, and preload every section and figure named above the speaker’s blurbs.
+1. Put the browser full-screen on the captured display, use 100% zoom, and use the same light theme for all four speakers. In the OBS preview, confirm that the website reaches all four edges of the 16:9 canvas with no black bars, distortion, or clipped content.
+2. Close unrelated tabs and applications, record when notifications are not pinging the computer, and preload every section and figure named above the speaker’s blurbs.
 3. Keep the website full-frame. Do not include a webcam tile; the mathematics should use the entire picture.
 4. Make a 20-second test containing speech, one animation, and one top-bar section jump. Play the file back through headphones and check that the text is sharp, the pointer is visible, and the voice is clear.
 5. Record at least two complete takes. Begin and end every take with one second of silence while a heading or static figure is visible.
@@ -45,12 +45,11 @@ There is no build step for the current site. From the repository root, run:
 ### Recording and saving a take
 
 1. Put the website on the first screen named above the speaker’s opening blurb.
-2. In OBS, confirm that the browser fills the preview and that **Mic/Aux** moves when the speaker talks.
+2. In OBS, confirm that the browser fills the preview, **Mic/Aux** moves when the speaker talks, and every other audio meter is muted.
 3. Click **Start Recording**, return to the browser, wait silently for one second, and then begin the scripted actions and narration.
 4. After the final words, hold the final screen silently for one second. Return to OBS and click **Stop Recording**.
-5. In OBS, choose **File → Remux Recordings**, select the new MKV file, and remux it to MP4.
-6. Play the entire MP4 once before sending it. Check the beginning, every top-bar jump, the animations, the final frame, and the audio.
-7. Name the MP4 files “01-gonzalo-take1.mp4,” “02-matt-take1.mp4,” “03-george-take1.mp4,” and “04-jaume-take1.mp4,” increasing the take number as needed.
+5. Play the entire MP4 once before sending it. Check the beginning, every top-bar jump, the animations, the final frame, and the audio.
+6. Name the MP4 files “01-gonzalo-take1.mp4,” “02-matt-take1.mp4,” “03-george-take1.mp4,” and “04-jaume-take1.mp4,” increasing the take number as needed.
 
 Do not scroll rapidly between distant sections. When the script says to move to another numbered section, open the website’s top navigation bar and click that section number. Pause briefly after the page lands before interacting with its figure.
 
