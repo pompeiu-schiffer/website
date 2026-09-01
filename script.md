@@ -27,16 +27,16 @@ There is no build step for the current site. From the repository root, run:
 ### One-time OBS setup
 
 1. Install OBS Studio from https://obsproject.com/ and approve its screen-recording and microphone permissions. On macOS, restart OBS after granting the permissions.
-2. Open **Settings → Video** and set both **Base (Canvas) Resolution** and **Output (Scaled) Resolution** to $1920\times1080$. Set **Common FPS Values** to $30$. This standardizes the four output files, but the captured display must also be framed at 16:9. Use a 16:9 display when possible. If the display is 16:10 or ultrawide, crop the display capture to a 16:9 region without cutting off the website; do not stretch the image.
+2. Open **Settings → Video** and set both **Base (Canvas) Resolution** and **Output (Scaled) Resolution** to $1920\times1080$. Set **Common FPS Values** to $30$. Use a 16:9 display when possible. A 16:10 or ultrawide display will leave bars when its entire image is fitted into the 16:9 canvas; do not crop or stretch it.
 3. Create one scene named “Website recording.”
-4. Add a source that captures the entire recording display: use **Display Capture** on Windows, **macOS Screen Capture → Display Capture** on macOS 13 or later, or the available **Screen Capture/Display Capture** source on Linux. Choose the monitor used for recording, leave the cursor visible, and fit the source to the canvas.
+4. Add a source that captures the entire recording display: use **Display Capture** on Windows, **macOS Screen Capture → Display Capture** on macOS 13 or later, or the available **Screen Capture/Display Capture** source on Linux. Choose the monitor used for recording and leave the cursor visible. Select the display-capture source, choose **Transform → Reset Transform**, and then choose **Transform → Fit to Screen**. In **Transform → Edit Transform**, confirm that every Crop value is $0$.
 5. Record narration only. Open **Settings → Audio**, set **Sample Rate** to **48 kHz**, disable **Desktop Audio**, and choose the narration microphone under **Mic/Auxiliary Audio**. If the display-capture source itself appears in the Audio Mixer, mute it. Do not add the same microphone again as a separate source.
 6. In the Audio Mixer, speak at the intended volume and set **Mic/Aux** so ordinary speech peaks between roughly $-12$ and $-6$ dB and never reaches the red.
 7. Open **Settings → Output**, set **Output Mode** to **Simple**, and find the **Recording** group. Choose the folder where takes will be saved, select **High Quality, Medium File Size**, set **Recording Format** to **Hybrid MP4**, and choose an **H.264** video encoder. Hybrid MP4 records directly to an MP4 file while remaining recoverable if OBS or the computer stops unexpectedly. If Hybrid MP4 is unavailable, update OBS; use MKV and **File → Remux Recordings** only as a fallback.
 
 ### Before recording each part
 
-1. Put the browser full-screen on the captured display, use 100% zoom, and use the same light theme for all four speakers. In the OBS preview, confirm that the website reaches all four edges of the 16:9 canvas with no black bars, distortion, or clipped content.
+1. Put the browser full-screen on the captured display, use 100% zoom, and use the same light theme for all four speakers. In the OBS preview, confirm that the entire website is visible with no distortion or clipped content. Bars are expected when the display and canvas have different aspect ratios.
 2. Close unrelated tabs and applications, record when notifications are not pinging the computer, and preload every section and figure named above the speaker’s blurbs.
 3. Keep the website full-frame. Do not include a webcam tile; the mathematics should use the entire picture.
 4. Make a 20-second test containing speech, one animation, and one top-bar section jump. Play the file back through headphones and check that the text is sharp, the pointer is visible, and the voice is clear.
