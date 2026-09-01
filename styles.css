@@ -43,10 +43,6 @@ a { color: inherit; }
 .status { display: flex; align-items: center; gap: 9px; font: 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 .status a { color: var(--orange); text-decoration: none; border-bottom: 1px solid currentColor; }
 .status i, .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(40,123,123,.14); }
-.method-button { justify-self: end; padding: 0 0 5px; color: var(--ink); background: none; border: 0; border-bottom: 1px solid var(--ink); font: 11px var(--mono); text-transform: uppercase; letter-spacing: .08em; cursor: pointer; }
-.method-button-prefix { display: inline; }
-
-
 .intro { padding: 76px 7vw 92px; display: grid; grid-template-rows: auto auto auto; }
 .intro-index { display: flex; gap: 15px; color: var(--muted); font: 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
 .intro-index span { color: var(--orange); }
@@ -1281,10 +1277,6 @@ body > footer { padding-inline: var(--layout-gutter); }
   .phase-derivation-grid article:last-child,
   .motion-split article:last-child,
   .debye-formula-grid article:last-child { border-bottom: 0; }
-}
-
-@media (max-width: 620px) {
-  .method-button-prefix { display: none; }
 }
 
 @media (pointer: coarse) {
